@@ -11,8 +11,7 @@ const DEFAULT_STATE = {
     polls: [],
     options: [],
     selected: false,
-    error: false,
-    fetching: false,
+
 };
 render(
     <Provider store={storeMW}>

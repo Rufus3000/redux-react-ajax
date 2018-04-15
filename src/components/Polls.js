@@ -5,12 +5,18 @@ import { bindActionCreators } from 'redux';
 
 class Polls extends React.Component{
   render(){
+    
+    if(this.props.polls)
+    {
+      var polls = this.props.polls.map(this.onePoll.bind(this));
+    }
     return(
+      
       console.log(this.props),
       <div>
         <p>Ankety:</p>
         <ul>
-        {this.props.polls.map(this.onePoll.bind(this))}
+        {polls}
         </ul>
       </div>
     )

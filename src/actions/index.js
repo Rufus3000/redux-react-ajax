@@ -8,6 +8,9 @@ export const FETCH_ACTION_FULFILLED = 'FETCH_ACTION_FULFILLED';
 export const FETCH_OPTIONS = 'FETCH_OPTIONS';
 export const FETCH_OPTIONS_FULFILLED = 'FETCH_OPTIONS_FULFILLED';
 
+export const SEND_VOTE = 'SEND_VOTE';
+export const SEND_VOTE_FULFILLED ='SEND_VOTE_FULFILLED';
+
 export const funcAction = (parA) => {
     const request = axios.get(API_URL);
     return {
@@ -29,3 +32,18 @@ export const funcOptions = (id) => {
         payload: request
     };
 };
+
+export const sendVote = (poll, option) => {
+    const request = axios({
+        method: 'get',
+        url: API_URL,
+        params: {
+            poll,
+            vote: option
+        }
+    });
+    return{
+        type: SEND_VOTE,
+        payload: request
+    }
+}

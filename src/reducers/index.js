@@ -1,6 +1,7 @@
 import {FETCH_ACTION_FULFILLED,
         FETCH_OPTIONS,
-        FETCH_OPTIONS_FULFILLED} from '../actions'
+        FETCH_OPTIONS_FULFILLED,
+        SEND_VOTE_FULFILLED} from '../actions'
 
 
 const processReduser = (state = "", action) => {
@@ -10,7 +11,6 @@ const processReduser = (state = "", action) => {
             console.log('Action fired!!');
             return {
                 ...state,
-                fetching: true
             };
         }
         case FETCH_ACTION_FULFILLED:
@@ -19,7 +19,6 @@ const processReduser = (state = "", action) => {
             
             return {...state,
                     polls: action.payload.data.polls,
-                    fetching: false
             };
         }
         case FETCH_OPTIONS_FULFILLED:
@@ -27,8 +26,12 @@ const processReduser = (state = "", action) => {
                 ...state,
                 selected: action.payload.data.question,
                 options: action.payload.data.options,
-                fetching: false,
             };
+        case SEND_VOTE_FULFILLED:
+            return {
+                ...state,
+                selected: false,
+            }
         default: return state;
     }
 } 
